@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "21.1.1"
+
+    defaultConfig {
+        applicationId "jp.spidernet.myphone"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    // 署名用定義
+    signingConfigs {
+        releaseKey {
+            keyAlias 'phoneutility'
+            keyPassword "duycm83"
+            storeFile file('../phoneutility.keystore')
+            // カレントディレクトリはapp/直下
+            storePassword "duycm83"
+        }
+    }
+    // ビルドタイプ
+    buildTypes {
+        debug {
+            debuggable true
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.releaseKey
+        }
+    }
+}
+repositories {
+    jcenter()
+    maven { url 'http://clinker.47deg.com/nexus/content/groups/public' }
+}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:cardview-v7:22.2.0'
+    // [START gradle_play_config]
+    compile 'com.google.android.gms:play-services-base:7.5.0'
+    compile 'com.google.android.gms:play-services-ads:7.5.0'
+    // [END gradle_play_config]
+//    compile 'com.github.rey5137:material:1.2.1'
+    compile 'com.github.rey5137:material:1.2.2-SNAPSHOT'
+//    compile project(':MaterialLibs')
+    compile('com.fortysevendeg.swipelistview:swipelistview:1.0-SNAPSHOT@aar') {
+        transitive = true
+    }
+}

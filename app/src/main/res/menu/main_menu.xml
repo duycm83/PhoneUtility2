@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/itemNewFile"
+        android:icon="@drawable/ic_menu_add"
+        android:title="@string/new_file"/>
+<!--     <item -->
+<!--         android:id="@+id/itemAbout" -->
+<!--         android:icon="@drawable/ic_menu_help" -->
+<!--         android:title="@string/about"/> -->
+    
+    <item android:id="@+id/itemUp"
+        android:icon="@drawable/ic_arrow_up"
+        android:title="@string/up_dir"
+        android:showAsAction="always"
+        android:onClick="upToParentDir"/>
+	<item android:id="@+id/itemSearch"
+         android:title="Search"
+         android:icon="@android:drawable/ic_menu_search"
+         android:showAsAction="always"/>
+</menu>

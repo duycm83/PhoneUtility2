@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">よこそう</string>
+    <string name="app_name">Phone Utility</string>
+    <string name="version">""バージョン:2.0 (build:2014/03/08)</string>
+    <string name="contact">"連絡先: lamphucduy@gmail.com"</string>
+    <string name="delete">削除</string>
+    <string name="rename">名前の変更</string>
+    <string name="cut">移動する</string>
+    <string name="move">ここに移動</string>
+    <string name="paste">貼り付け</string>
+    <string name="cancel">キャンセル</string>
+    <string name="copy">コピーする</string>
+    <string name="close">閉じる</string>
+    <string name="cant_rename">名前が変更出来ませんでした。</string>
+    <string name="cant_open">開きませんでした。</string>
+    <string name="about">情報</string>
+    <string name="deleting">削除</string>
+    <string name="new_file">ファイル作成</string>
+    <string name="new_dir">フォルダ作成</string>
+    <string name="up_dir">上</string>
+    <string name="delete_confirm">ファイルを削除しますか？</string>
+    <string name="delete_file_confirm_title">ファイル削除</string>
+    <string name="rename_message">名前を変更</string>
+    <string name="dialog_download_torrent_app_message">Torrentアプリケーションがインストールされていません。 Playストアを起動してアプリケーションをインストールましょうか？</string>
+    <string name="action_search">検索: %s</string>
+    <string name="action_settings">検索設定</string>
+    <string name="action_search_result">Result: %d</string>
+    <string name="search_name">ファイル名</string>
+    <string name="search_ext">ファイルの拡張子</string>
+    <string name="numfiles_numfolders">%1$d ファイル  %2$d Folders</string>
+    <string name="file_details">サイズ: %1$s 更新日: %2$s</string>
+    <string name="search_progress">検索中</string>
+    <string name="search_progress_name">検索中: %1$s</string>
+    <string name="lastupdate">変更日</string>
+    <string name="size">サイズ</string>
+    <string name="filename">名前</string>
+    <string name="inputfilename">ファイル名入力</string>
+    <string name="search_title">検索指定</string>
+    <string name="search_size_title">サイズ</string>
+    <string name="search_extend_title">拡張子</string>
+    <string name="select_file_type">ファイルの種類を選択</string>
+
+    <string-array name="search_size">
+        <item>0 ~ 100KB</item>
+        <item>100KB ~ 1MB</item>
+        <item>1MB ~ 10MB</item>
+        <item>10MB ~ 100MB</item>
+        <item> > 100MB</item>
+    </string-array>
+    <string-array name="search_type">
+        <item>全て</item>
+        <item>サイズ指定</item>
+        <item>拡張子指定</item>
+    </string-array>
+    <string-array name="search_extend">
+        <item>テキスト: *.txt</item>
+        <item>画像: *.jpg, *.png, *.gif</item>
+        <item>音声: *.mp3</item>
+        <item>動画: *.mp4, *.avi</item>
+        <item>Excel: *.xls, *.xlsx</item>
+        <item>Word: *.doc, *.docx</item>
+        <item>Android: *.apk</item>
+        <item>Torrent: *.torrent</item>
+        <item>拡張なし</item>
+    </string-array>
+    <string-array name="context_menu">
+        <item>名前の変更</item>
+        <item>切り取り</item>
+    </string-array>
+    <string-array name="select_applications">
+        <item>動画ファイル</item>
+        <item>音声ファイル</item>
+        <item>画像ファイル</item>
+        <item>テキストファイル</item>
+    </string-array>
+    <string name="banner_ad_unit_id">ca-app-pub-5661620499679854/6425253970</string>
+
+</resources>

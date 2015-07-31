@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Welcome</string>
+    <string name="app_name">Phone Utility</string>
+    <string name="version">Version:1.0 (build:03/2014)</string>
+    <string name="contact">"Contact: lamphucduy@gmail.com"</string>
+    <string name="delete">Delete</string>
+    <string name="rename">Remane</string>
+    <string name="cut">Cut</string>
+    <string name="move">Move to here</string>
+    <string name="paste">Paste</string>
+    <string name="cancel">Cancel</string>
+    <string name="copy">Copy</string>
+    <string name="close">Close</string>
+    <string name="about">About</string>
+    <string name="cant_rename">"can't rename"</string>
+    <string name="cant_open">"Can't open"</string>
+    <string name="deleting">Deleting</string>
+    <string name="new_file">New File</string>
+    <string name="new_dir">New Folder</string>
+    <string name="up_dir">Upper</string>
+    <string name="delete_confirm">Are you sure to delete file(s)?</string>
+    <string name="delete_file_confirm_title">File(s) Delete</string>
+    <string name="rename_message">New file name</string>
+    <string name="dialog_download_torrent_app_message">Torrent Application is not installed. Would you start Play Store and install Torrent application？</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search: %s</string>
+    <string name="action_search_result">Result: %d</string>
+    <string name="search_name">File Name</string>
+    <string name="search_ext">File Extension</string>
+    <string name="numfiles_numfolders">%1$d Files  %2$d Folders</string>
+    <string name="file_details">Size: %1$s Updated: %2$s</string>
+    <string name="search_progress">Searching</string>
+    <string name="search_progress_name">Searching: %1$s</string>
+    <string name="lastupdate">Date</string>
+    <string name="size">Size</string>
+    <string name="filename">Name</string>
+    <string name="inputfilename">Input file name</string>
+    <string name="search_title">Search Options</string>
+    <string name="search_size_title">File Size</string>
+    <string name="search_extend_title">File Type</string>
+    <string name="select_file_type">Select file type</string>
+
+    <string-array name="search_type">
+        <item>Search all</item>
+        <item>Search by size</item>
+        <item>Search by type</item>
+    </string-array>
+    <string-array name="search_size">
+        <item>0 ~ 100KB</item>
+        <item>100KB ~ 1MB</item>
+        <item>1MB ~ 10MB</item>
+        <item>10MB ~ 100MB</item>
+        <item> > 100MB</item>
+    </string-array>
+    <string-array name="search_extend">
+        <item>Text: *.txt</item>
+        <item>Image: *.jpg, *.png, *.gif</item>
+        <item>Audio: *.mp3</item>
+        <item>Video: *.mp4, *.avi</item>
+        <item>Excel: *.xls, *.xlsx</item>
+        <item>Word: *.doc, *.docx</item>
+        <item>Android: *.apk</item>
+        <item>Torrent: *.torrent</item>
+        <item>None extend</item>
+    </string-array>
+    <string-array name="context_menu">
+        <item>Rename</item>
+        <item>Cut</item>
+    </string-array>
+    <string-array name="select_applications">
+        <item>Video file</item>
+        <item>Audio file</item>
+        <item>Image file</item>
+        <item>Text file</item>
+    </string-array>
+    <string name="banner_ad_unit_id">ca-app-pub-5661620499679854/6425253970</string>
+</resources>

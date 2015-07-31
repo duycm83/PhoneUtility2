@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="jp.spidernet.myphone"
+    android:versionCode="9"
+    android:versionName="2.2.4">
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="22" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.AppTheme">
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="Adlantis_Publisher_ID"
+            android:value="MTMwODU%3D%0A" />
+
+        <activity
+            android:name="jp.spidernet.myphone.MainActivity"
+            android:configChanges="orientation|keyboardHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!--
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+            </intent-filter>
+             <meta-data android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+            android:resource="@xml/device_filter" />
+            -->
+        </activity>
+        <activity
+            android:name="jp.spidernet.myphone.EditActivity"
+            android:configChanges="orientation|keyboardHidden" />
+        <activity
+            android:name="jp.spidernet.myphone.AboutActivity"
+            android:launchMode="singleInstance"
+            android:theme="@android:style/Theme.Dialog" >
+
+        </activity>
+        <!-- [SNIPPET add_activity_config_changes]
+            Include the AdActivity configChanges and theme.
+            [START add_activity_config_changes] -->
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent" />
+        <receiver
+            android:name="jp.spidernet.myphone.AlarmReceiver"
+            android:process=":remote"></receiver>
+
+        <service
+            android:name="jp.spidernet.myphone.StartUpService"
+            android:enabled="true"></service>
+
+        <receiver android:name="jp.spidernet.myphone.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.SCREEN_OFF" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="jp.spidernet.myphone.BatteryInfoReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BATTERY_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name="jp.spidernet.myphone.SearchResultActivity"></activity>
+    </application>
+
+</manifest>

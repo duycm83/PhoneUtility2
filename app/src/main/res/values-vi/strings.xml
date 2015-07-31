@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Xin chào</string>
+    <string name="app_name">Phone Utility</string>
+    <string name="version">Phiên bản:2.0 (build:03/2014)</string>
+    <string name="contact">"Liên hệ: lamphucduy@gmail.com"</string>
+    <string name="delete">Xóa</string>
+    <string name="rename">Đổi tên</string>
+    <string name="cut">Cắt</string>
+    <string name="move">Chuyen</string>
+    <string name="close">Đóng</string>
+    <string name="cancel">Bỏ qua</string>
+    <string name="paste">Dán</string>
+    <string name="copy">Sao chép</string>
+    <string name="about">Thông tin</string>
+    <string name="cant_rename">Không đổi được tên</string>
+    <string name="cant_open">Không mở được</string>
+    <string name="deleting">Xóa</string>
+    <string name="new_file">Tạo mới tập tin</string>
+    <string name="new_dir">Thư mục mới</string>
+    <string name="up_dir">Trên</string>
+    <string name="delete_confirm">Bạn đã chọn xóa tập tin？</string>
+    <string name="delete_file_confirm_title">Xóa tập tin</string>
+    <string name="rename_message">Nhập tên mới</string>
+    <string name="dialog_download_torrent_app_message">Torrent chưa được cài đặt. Bạn có muốn mở Play Store và cài đặt chương trignh Torrent không？</string>
+    <string name="action_settings">Cài đặt</string>
+    <string name="action_search">Tìm kiếm: %s</string>
+    <string name="action_search_result">Result: %d</string>
+    <string name="search_name">Tên file</string>
+    <string name="search_ext">Loại file</string>
+    <string name="numfiles_numfolders">%1$d File  %2$d Folders</string>
+    <string name="file_details">Dung Lượng: %1$s Ngày Sửa: %2$s</string>
+    <string name="search_progress">Đang tìm</string>
+    <string name="search_progress_name">Đang tìm: %1$s</string>
+    <string name="lastupdate">Date</string>
+    <string name="size">Size</string>
+    <string name="filename">Name</string>
+    <string name="inputfilename">Tên File</string>
+    <string name="search_title">Tuỳ chọn tìm kiếm</string>
+    <string name="search_size_title">Dung lượng file</string>
+    <string name="search_extend_title">Loại file</string>
+    <string name="select_file_type">Chọn loại file</string>
+
+    <string-array name="search_type">
+        <item>Tất cả</item>
+        <item>Chọn dung lượng file</item>
+        <item>Chọn loại file</item>
+    </string-array>
+    <string-array name="search_size">
+        <item>0 ~ 100KB</item>
+        <item>100KB ~ 1MB</item>
+        <item>1MB ~ 10MB</item>
+        <item>10MB ~ 100MB</item>
+        <item> > 100MB</item>
+    </string-array>
+    <string-array name="search_extend">
+        <item>Text: *.txt</item>
+        <item>Image: *.jpg, *.png, *.gif</item>
+        <item>Audio: *.mp3</item>
+        <item>Video: *.mp4, *.avi</item>
+        <item>Excel: *.xls, *.xlsx</item>
+        <item>Word: *.doc, *.docx</item>
+        <item>Android: *.apk</item>
+        <item>Torrent: *.torrent</item>
+        <item>None extend</item>
+    </string-array>
+    <string-array name="context_menu">
+        <item>Đổi tên</item>
+        <item>Cắt</item>
+    </string-array>
+<string-array name="select_applications">
+        <item>File video</item>
+        <item>File audio</item>
+        <item>File image</item>
+        <item>Tile text</item>
+    </string-array>
+    <string name="banner_ad_unit_id">ca-app-pub-5661620499679854/6425253970</string>
+</resources>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:gravity="fill_horizontal"
+        android:scaleType="fitXY"
+        android:src="@android:drawable/divider_horizontal_bright" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:text="@string/version" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:autoLink="email"
+        android:gravity="center"
+        android:linksClickable="true"
+        android:text="@string/contact"
+        android:textSize="15sp" />
+
+
+    <Button
+        android:id="@+id/close"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="onClick"
+        android:text="@string/close" />
+    <com.rey.material.widget.Button
+        android:id="@+id/button_bt_flat_color"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/bt_height"
+        android:layout_weight="0.4"
+        android:text="BUTTON"
+        android:background="@null"
+        app:v_styleId="@array/button_flat_color"/>
+</LinearLayout>
