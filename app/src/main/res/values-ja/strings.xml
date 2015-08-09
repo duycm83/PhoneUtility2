@@ -29,7 +29,7 @@
     <string name="action_search_result">Result: %d</string>
     <string name="search_name">ファイル名</string>
     <string name="search_ext">ファイルの拡張子</string>
-    <string name="numfiles_numfolders">%1$d ファイル  %2$d Folders</string>
+    <string name="numfiles_numfolders">%1$d ファイル  %2$dフォルダ</string>
     <string name="file_details">サイズ: %1$s 更新日: %2$s</string>
     <string name="search_progress">検索中</string>
     <string name="search_progress_name">検索中: %1$s</string>
@@ -76,5 +76,8 @@
         <item>テキストファイル</item>
     </string-array>
     <string name="banner_ad_unit_id">ca-app-pub-5661620499679854/6425253970</string>
+    <string name="larger999">999+</string>
+    <string name="disagree">不同意</string>
+    <string name="agree">同意</string>
 
 </resources>

@@ -18,6 +18,8 @@ import com.fortysevendeg.swipelistview.SwipeListView;
 import java.io.File;
 import java.util.ArrayList;
 
+import jp.spidernet.myphone.adapter.FileListAdapter;
+
 public class SearchResultActivity extends MainActivity implements
 		SearchView.OnQueryTextListener {
 	private static final String TAG = "SearchResultActivity";

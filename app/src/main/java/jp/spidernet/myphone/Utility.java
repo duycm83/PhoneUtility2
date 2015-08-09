@@ -1,12 +1,5 @@
 package jp.spidernet.myphone;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-
-import jp.spidernet.myphone.tools.FileUtils;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -25,6 +18,14 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.SystemClock;
 import android.util.Log;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
+import jp.spidernet.myphone.tools.FileUtils;
 
 public class Utility {
 	private static final String TAG = Utility.class.getSimpleName();
@@ -182,9 +183,9 @@ public class Utility {
 		return bmp;
 	}
 	
-	public static boolean rename(File renamedFile, String newName) {
-		boolean result = false;
-		result = renamedFile.renameTo(new File(newName));
+	public static boolean rename(File oldFile, String newName) {
+		File newFile = new File(oldFile.getParent(), newName);
+		boolean result = oldFile.renameTo(newFile);
 		return result;
 	}
 	

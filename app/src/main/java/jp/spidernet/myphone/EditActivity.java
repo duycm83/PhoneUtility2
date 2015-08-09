@@ -14,13 +14,13 @@ import android.view.View.OnClickListener;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import jp.spidernet.myphone.adapter.FileListAdapter;
 import jp.spidernet.myphone.tools.CommonDialogFactory;
 import jp.spidernet.myphone.tools.ISimpleListener;
 
@@ -35,7 +35,7 @@ public class EditActivity extends MainActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		setContentView(R.layout.activity_main);
 		setCloseFooter();
 		mEditMode = getIntent().getIntExtra(EXTRA_EDIT_MODE, 0);
 		mFilesList = getIntent().getStringArrayExtra(EXTRA_FILE_LIST);
@@ -44,8 +44,8 @@ public class EditActivity extends MainActivity {
 			return;
 		}
 		
-		mTvCurrentDir = (TextView) findViewById(R.id.tvCurrentDir);
-		mTvCurrentDir.setText(mCurrentDir.getAbsolutePath());
+//		mTvCurrentDir = (TextView) findViewById(R.id.tvCurrentDir);
+//		mTvCurrentDir.setText(mCurrentDir.getAbsolutePath());
 		registerForContextMenu(mListView);
 		updateNewDir(mCurrentDir);
 		mListView.setAdapter(mFilesListAdapter);
@@ -221,14 +221,14 @@ public class EditActivity extends MainActivity {
 		return upDir;
 	}
 
-	protected void updateNewDir(File newFileDir) {
+	public void updateNewDir(File newFileDir) {
 		mCurrentDir = newFileDir;
 		mListFiles = Utility.makeFilesArrayList(mCurrentDir.listFiles());
 		Utility.sortFilesList(mListFiles);
 		mFilesListAdapter = new FileListAdapter(EditActivity.this,
 				R.layout.listitem, mListFiles);
 		mListView.setAdapter(mFilesListAdapter);
-		mTvCurrentDir.setText(mCurrentDir.getAbsolutePath());
+		getSupportActionBar().setSubtitle(mCurrentDir.getAbsolutePath());
 	}
 
 	public void addToCheckedFilesList(File file) {

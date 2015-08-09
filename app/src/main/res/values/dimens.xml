@@ -26,8 +26,8 @@
     <dimen name="line_default">1dp</dimen>
 
     <!-- Products -->
-    <dimen name="height_list">90dp</dimen>
-    <dimen name="size_list_image">64dp</dimen>
+    <dimen name="height_list">70dp</dimen>
+    <dimen name="size_list_image">30dp</dimen>
     <dimen name="font_size_title">17sp</dimen>
     <dimen name="font_size_description">15sp</dimen>
 

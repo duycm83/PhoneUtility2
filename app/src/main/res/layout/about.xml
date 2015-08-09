@@ -41,12 +41,4 @@
         android:layout_gravity="center_horizontal"
         android:onClick="onClick"
         android:text="@string/close" />
-    <com.rey.material.widget.Button
-        android:id="@+id/button_bt_flat_color"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/bt_height"
-        android:layout_weight="0.4"
-        android:text="BUTTON"
-        android:background="@null"
-        app:v_styleId="@array/button_flat_color"/>
 </LinearLayout>

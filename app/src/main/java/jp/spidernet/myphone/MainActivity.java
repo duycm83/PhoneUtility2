@@ -1,5 +1,6 @@
 package jp.spidernet.myphone;
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -14,9 +15,13 @@ import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -27,8 +32,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.fortysevendeg.swipelistview.BaseSwipeListViewListener;
@@ -44,11 +48,15 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Stack;
 
+import jp.spidernet.myphone.adapter.FileListAdapter;
+import jp.spidernet.myphone.adapter.NavDrawerAdapter;
+import jp.spidernet.myphone.dialog.OpenFileDialog;
+import jp.spidernet.myphone.model.NavDrawerItem;
 import jp.spidernet.myphone.tools.CommonDialogFactory;
 import jp.spidernet.myphone.tools.FileUtils;
 import jp.spidernet.myphone.tools.ISimpleListener;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends AppCompatActivity  {
 	public static final int EDIT_MODE_CUT = 1;
 	public static final int EDIT_MODE_COPY = 2;
 	public static final String EXTRA_FILE_LIST = "files_list";
@@ -61,7 +69,6 @@ public class MainActivity extends FragmentActivity {
 	protected File SDDIR = Environment.getExternalStorageDirectory();
 	protected File mCurrentDir = SDDIR;
 	protected ArrayList<File> mListFiles;
-	protected TextView mTvCurrentDir = null;
 	protected Stack<Integer> mSelectedPosStack = new Stack<Integer>();
 	protected FileListAdapter mFilesListAdapter = null;
 
@@ -89,6 +96,9 @@ public class MainActivity extends FragmentActivity {
 
 	};
 	boolean flag = false;
+	private DrawerLayout mDrawerLayout;
+	private ActionBarDrawerToggle mDrawerToggle;
+	private android.widget.ListView mDrawerListView;
 	private ArrayList<File> mCutFilesList = new ArrayList<File>();
 	private ArrayList<File> mCopyFilesList = new ArrayList<File>();
 	private AdView mAdView;
@@ -96,8 +106,11 @@ public class MainActivity extends FragmentActivity {
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		setTheme(R.style.AppTheme);
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		setContentView(R.layout.activity_main);
+		actionBarSetup();
+
 		setCloseFooter();
 		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -106,11 +119,7 @@ public class MainActivity extends FragmentActivity {
 		} else {
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 		}
-		// Utility.getSensorInfo(getBaseContext());
 		Utility.getLocationInfo(getBaseContext());
-		// accessRoot();
-		mTvCurrentDir = (TextView) findViewById(R.id.tvCurrentDir);
-		mTvCurrentDir.setText(mCurrentDir.getAbsolutePath());
 		mListView = (SwipeListView) findViewById(R.id.listView);
 		registerForContextMenu(mListView);
 
@@ -119,14 +128,45 @@ public class MainActivity extends FragmentActivity {
 		intentfilter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
 		registerReceiver(deviceAtatchReceiver, intentfilter);
 		updateNewDir(mCurrentDir);
+		mDrawerLayout = (DrawerLayout)findViewById(R.id.main_dl);
+		initDrawer();
+
+
 	}
+
+	private void initDrawer() {
+		// （3本線の）切り替えボタンの生成
+		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.app_name, R.string.app_name);
+		mDrawerToggle.setDrawerIndicatorEnabled(true);
+		mDrawerLayout.setDrawerListener(mDrawerToggle);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setDisplayShowHomeEnabled(true);
+		mDrawerListView = (ListView) findViewById(R.id.main_lv_drawer);
+		NavDrawerAdapter adapter = new NavDrawerAdapter(this, R.layout.drawer_list_item, NavDrawerItem.createDrawerItems());
+		mDrawerListView.setAdapter(adapter);
+	}
+	@Override
+	protected void onPostCreate(Bundle savedInstanceState) {
+		super.onPostCreate(savedInstanceState);
+		mDrawerToggle.syncState();
+	}
+
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		mDrawerToggle.onConfigurationChanged(newConfig);
+	}
+
+//	@Override
+//	public void onBackStackChanged() {
+//		mDrawerToggle.setDrawerIndicatorEnabled(mFm.getBackStackEntryCount() == 0);
+//		getSupportActionBar().setDisplayHomeAsUpEnabled(mFm.getBackStackEntryCount() > 0);
+//		mDrawerToggle.syncState();
+//	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		// updateNewDir(mCurrentDir);
-		// setAdapter();
-
 		Intent intent = getIntent();
 		Log.d(TAG, "intent: " + intent);
 		String action = intent.getAction();
@@ -134,6 +174,22 @@ public class MainActivity extends FragmentActivity {
 		if (UsbManager.ACTION_USB_DEVICE_ATTACHED.equals(action)) {
 			Log.v(TAG, action);
 			Toast.makeText(getBaseContext(), action, Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	/**
+	 * Sets the Action Bar for new Android versions.
+	 */
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	private void actionBarSetup() {
+		// ツールバーをアクションバーとしてセット
+		Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+		setSupportActionBar(toolbar);
+		toolbar.inflateMenu(R.menu.main_menu);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			android.support.v7.app.ActionBar ab = getSupportActionBar();
+			ab.setDisplayShowHomeEnabled(true);
+			ab.setSubtitle(mCurrentDir.getAbsolutePath());
 		}
 	}
 
@@ -381,7 +437,7 @@ public class MainActivity extends FragmentActivity {
 			break;
 		}
 
-		return super.onOptionsItemSelected(item);
+		return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
 	}
 
 	private void clearCheckedItem() {
@@ -424,48 +480,48 @@ public class MainActivity extends FragmentActivity {
 				.getMenuInfo();
 		int menuItemIndex = item.getItemId();
 		if (menuItemIndex == 0) {
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			final EditText editText = new EditText(MainActivity.this);
-			editText.setText(mListFiles.get(info.position).getName());
-			builder.setMessage(getString(R.string.rename_message))
-					.setView(editText)
-					.setCancelable(false)
-					.setPositiveButton(android.R.string.ok,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int id) {
-									String newName = mCurrentDir.getPath()
-											+ "/"
-											+ editText.getText().toString();
-									boolean result = Utility.rename(
-											mListFiles.get(info.position),
-											newName);
-									if (result) {
-										mListFiles.remove(info.position);
-										mListFiles.add(info.position, new File(
-												newName));
-										mFilesListAdapter
-												.notifyDataSetChanged();
-									} else {
-										Toast.makeText(
-												getBaseContext(),
-												getString(R.string.cant_rename),
-												Toast.LENGTH_SHORT).show();
-									}
-								}
-							})
-					.setNegativeButton(android.R.string.cancel,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int id) {
-									dialog.cancel();
-								}
-							});
-			AlertDialog alert = builder.create();
-			alert.show();
+//			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//			final EditText editText = new EditText(MainActivity.this);
+//			editText.setText(mListFiles.get(info.position).getName());
+//			builder.setMessage(getString(R.string.rename_message))
+//					.setView(editText)
+//					.setCancelable(false)
+//					.setPositiveButton(android.R.string.ok,
+//							new DialogInterface.OnClickListener() {
+//								public void onClick(DialogInterface dialog,
+//										int id) {
+//									String newName = mCurrentDir.getPath()
+//											+ "/"
+//											+ editText.getText().toString();
+//									boolean result = Utility.rename(
+//											mListFiles.get(info.position),
+//											newName);
+//									if (result) {
+//										mListFiles.remove(info.position);
+//										mListFiles.add(info.position, new File(
+//												newName));
+//										mFilesListAdapter
+//												.notifyDataSetChanged();
+//									} else {
+//										Toast.makeText(
+//												getBaseContext(),
+//												getString(R.string.cant_rename),
+//												Toast.LENGTH_SHORT).show();
+//									}
+//								}
+//							})
+//					.setNegativeButton(android.R.string.cancel,
+//							new DialogInterface.OnClickListener() {
+//								public void onClick(DialogInterface dialog,
+//										int id) {
+//									dialog.cancel();
+//								}
+//							});
+//			AlertDialog alert = builder.create();
+//			alert.show();
 		} else if (menuItemIndex == 1) {
 			if (mCutFilesList == null) { // cut
-				mCutFilesList = new ArrayList<File>();
+				mCutFilesList = new ArrayList<>();
 				mCutFilesList.add(mListFiles.get(info.position));
 			} else { // paste
 				Utility.move(mCutFilesList, mListFiles.get(info.position));
@@ -494,7 +550,7 @@ public class MainActivity extends FragmentActivity {
 			if (SearchResultActivity.isFirstLoad)
 				mListFiles.clear();
 		} else {
-			mTvCurrentDir.setText(mCurrentDir.getAbsolutePath());
+			getSupportActionBar().setSubtitle(mCurrentDir.getAbsolutePath());
 			mListFiles = Utility.makeFilesArrayList(mCurrentDir.listFiles());
 		}
 		Utility.sortFilesList(mListFiles);
@@ -525,7 +581,7 @@ public class MainActivity extends FragmentActivity {
 		return (mCutFilesList != null && mCutFilesList.size() > 0);
 	};
 
-protected void onDestroy() {
+	protected void onDestroy() {
 		super.onDestroy();
 		unregisterReceiver(deviceAtatchReceiver);
 	}

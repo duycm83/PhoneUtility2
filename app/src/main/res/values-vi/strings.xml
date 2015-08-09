@@ -76,4 +76,7 @@
         <item>Tile text</item>
     </string-array>
     <string name="banner_ad_unit_id">ca-app-pub-5661620499679854/6425253970</string>
+    <string name="larger999">999+</string>
+    <string name="disagree">Không Đồng Ý</string>
+    <string name="agree">Đồng Ý</string>
 </resources>

@@ -1,58 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+<app.mosn.zdepthshadowlayout.ZDepthShadowLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:shadow="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    shadow:z_depth="z_depth1"
+    shadow:z_depth_padding="z_depth1"
+    shadow:z_depth_shape="rect">
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/back"
         style="@style/ListBackContent"
         android:tag="back">
-        <com.rey.material.widget.Button
-            android:id="@+id/button_bt_flat_wave"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/bt_height"
-            android:layout_weight="0.4"
-            android:text="BUTTON"
-            android:background="@null"
-            app:v_styleId="@array/button_flat_wave"/>
-        <Button
-            android:id="@+id/example_row_b_action_1"
-            style="@style/ListButtonAction"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="open" />
 
-        <Button
-            android:id="@+id/example_row_b_action_2"
-            style="@style/ListButtonAction"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="googlePlay" />
-
-        <Button
-            android:id="@+id/example_row_b_action_3"
-            style="@style/ListButtonAction"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="uninstall" />
-
+        <ImageButton
+            android:id="@+id/btn_delete"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:src="@drawable/ic_delete_white_24dp"/>
+        <ImageButton
+            android:id="@+id/btn_rename"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:src="@drawable/ic_mode_edit_white_24dp"/>
+        <ImageButton
+            android:id="@+id/btn_info"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:src="@drawable/ic_info_white_24dp"/>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/front"
-        android:tag="front"
         style="@style/ListFrontContent"
-        android:orientation="horizontal">
-
+        android:orientation="horizontal"
+        android:tag="front">
+        <FrameLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp">
         <ImageView
             android:id="@+id/iv_icon"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center_vertical"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_empty_folder" />
-
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_folder_open_black_48dp" />
+            <TextView
+                android:id="@+id/tv_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:textColor="@android:color/black"
+                android:visibility="gone"/>
+        </FrameLayout>
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -63,6 +69,8 @@
                 android:id="@+id/tvTitle"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:singleLine="true"
                 android:text="Medium Text"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -82,14 +90,14 @@
                 android:visibility="gone" />
         </LinearLayout>
 
-        <CheckBox
-
+        <com.gc.materialdesign.views.CheckBox
             android:id="@+id/checkBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#1E88E5"
             android:focusable="false"
             android:focusableInTouchMode="true"
-            android:onClick="onMenuEditMode" />
+            android:onClick="onMenuEditMode"/>
 
     </LinearLayout>
-</FrameLayout>
+</RelativeLayout></app.mosn.zdepthshadowlayout.ZDepthShadowLayout>

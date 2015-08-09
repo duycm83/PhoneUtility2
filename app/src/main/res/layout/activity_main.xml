@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_dl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/main_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:minHeight="?attr/actionBarSize"
+                app:theme="@style/AppTheme"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/main_toolbar">
+
+                <LinearLayout
+                    android:id="@+id/upDir"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/list_selector_background"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/sortBar"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/sortFileName"
+                            android:layout_width="0dp"
+                            android:layout_height="30dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:onClick="onSort"
+                            android:padding="0dp"
+                            android:text="@string/filename"
+                            android:textSize="12sp" />
+
+                        <Button
+                            android:id="@+id/sortUpdate"
+                            android:layout_width="0dp"
+                            android:layout_height="30dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:onClick="onSort"
+                            android:padding="0dp"
+                            android:text="@string/lastupdate"
+                            android:textSize="12sp" />
+
+                        <Button
+                            android:id="@+id/sortSize"
+                            android:layout_width="0dp"
+                            android:layout_height="30dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:onClick="onSort"
+                            android:padding="0dp"
+                            android:text="@string/size"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <com.fortysevendeg.swipelistview.SwipeListView
+                    xmlns:swipe="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/listView"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_above="@+id/footer"
+                    android:layout_below="@id/upDir"
+                    android:listSelector="#00000000"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:dividerHeight="2dp"
+                    android:divider="@android:color/transparent"
+                    swipe:swipeBackView="@+id/back"
+                    swipe:swipeCloseAllItemsWhenMoveList="true"
+                    swipe:swipeDrawableChecked="@drawable/choice_selected"
+                    swipe:swipeDrawableUnchecked="@drawable/choice_unselected"
+                    swipe:swipeFrontView="@+id/front"
+                    swipe:swipeMode="left"/>
+
+                <FrameLayout
+                    android:id="@+id/footer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true">
+
+                    <com.google.android.gms.ads.AdView
+                        android:id="@+id/adView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        ads:adSize="SMART_BANNER"
+                        ads:adUnitId="@string/banner_ad_unit_id"
+                        android:layout_alignParentBottom="true"/>
+
+                    <ImageButton
+                        android:id="@+id/button_close"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="right"
+                        android:background="@drawable/btn_close" />
+                </FrameLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+    
+    <FrameLayout 
+        android:id="@+id/main_fl_drawer"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:paddingTop="?attr/actionBarSize">
+
+        <ListView
+            android:id="@+id/main_lv_drawer"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:choiceMode="singleChoice"
+	        android:divider="@null"
+	        android:dividerHeight="0dp"
+            android:background="@color/colorPrimary"
+	        android:listSelector="@android:color/transparent"/>
+        
+    </FrameLayout>    
+    
+</android.support.v4.widget.DrawerLayout>

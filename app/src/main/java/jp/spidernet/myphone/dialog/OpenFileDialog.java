@@ -1,4 +1,4 @@
-package jp.spidernet.myphone;
+package jp.spidernet.myphone.dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -8,6 +8,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
+
+import jp.spidernet.myphone.R;
+import jp.spidernet.myphone.Utility;
 
 public class OpenFileDialog extends DialogFragment {
 	public static final String TAG = OpenFileDialog.class.getSimpleName();
